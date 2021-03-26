@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<?php
+    $json = file_get_contents("array.json");
+    $data = json_decode($json);
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +22,8 @@
     </style>
 
 </head>
-<body>
-    
+<body> 
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Teste</h1>
@@ -49,17 +55,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">...</th>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm">Detalhes</button>
-                            </td>
-                        </tr>
+                        <?php foreach($data as $dados) : ?>
+                            <tr>
+                                <th scope="row"><?php echo $dados->nome?></th>
+                                <td><?php echo $dados->data_nasc?></td>
+                                <td><?php echo $dados->cpf?></td>
+                                <td><?php echo $dados->rg?></td>
+                                <td><?php echo $dados->email?></td>
+                                <td><?php echo $dados->celular?></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="alert()">Detalhes</button>
+                                </td>
+                            </tr>
+                        <?php  endforeach;?>
                     </tbody>
                 </table>                
             </div>
